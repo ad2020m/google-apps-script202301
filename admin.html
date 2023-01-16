@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <title><?= title ?></title>
+    <?!= include('css'); ?>
+  </head>
+  <body>
+  <div class="container">
+
+    <h1><?= title ?></h1>
+
+
+  <? if(err){ ?>
+
+    <p><?!= err ?></p>
+
+  <? }else{ ?>
+
+  <table class="table">
+  <tr>
+  <th>日付</th><th>残</th><th>予約1</th><th>予約2</th><th>予約3</th>
+  </tr>
+  <tr>
+  <? makeMonth.forEach(month => month.forEach( elem => { ?>
+    <? if(elem[1] == "日" || elem[1] == "土" || elem[2] == "x" ){ ?>
+    <tr class="bg_b">
+  <? }else{ ?>
+  <tr>
+  <? } ?>
+      <td><?= elem[0].slice(5, 10) ?>(<?= elem[1] ?>)</td>
+      <td><a href="<?= url ?>?yoyaku=<?= elem[0] ?>&youbi=<?= elem[1] ?>&zan=<?= elem[2] ?>"><?= elem[2] ?></a></td>
+      <td><a href="<?= url ?>?yoyaku=<?= elem[0] ?>&youbi=<?= elem[1] ?>&user=<?= elem[3] ?>"><?= elem[3].slice(0, -3) ?></a></td>
+      <td><a href="<?= url ?>?yoyaku=<?= elem[0] ?>&youbi=<?= elem[1] ?>&user=<?= elem[4] ?>"><?= elem[4].slice(0, -3) ?></a></td>
+      <td><a href="<?= url ?>?yoyaku=<?= elem[0] ?>&youbi=<?= elem[1] ?>&user=<?= elem[5] ?>"><?= elem[5].slice(0, -3) ?></a></td>
+  </tr>
+  <? })) ?>
+  </table>
+
+  <? } ?>
+
+  <p><a href="<?= url ?>">トップへ戻る</a></p>
+  </div>
+
+    <?!= include('js'); ?>
+  </body>
+</html>

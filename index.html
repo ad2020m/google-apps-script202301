@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <title><?= title ?></title>
+    <?!= include('css'); ?>
+  </head>
+  <body>
+  <div class="container">
+
+    <h1><?= title ?></h1>
+
+  <? if(err){ ?>
+
+    <p><?!= err ?></p>
+
+  <? }else{ ?>
+  <p>予約受付完了時、メールが送信されます。<br>
+  届かない場合はキャリアの迷惑メール設定にて<br>以下のアドレスからのメールを受信可能に設定してください。<br>
+  〇〇@gmail.com</p>
+  <table class="table">
+  <tr>
+  <th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>
+  </tr>
+  <tr>
+    <? for(let i = 0;i < startDay; i++){ ?>
+    <td> </td>
+    <? } ?>
+  <? makeMonth.forEach(month => month.forEach( elem => { ?>
+
+    <? if(elem[2] == 'x'){ ?>
+      <td><?= elem[0].slice(5, 10) ?><br>x</td>
+    <? }else if(elem[2] == 0){ ?>
+      <td><?= elem[0].slice(5, 10) ?><br>0</td>
+    <? }else{ ?>
+      <td><a href="<?= url ?>?date=<?= elem[0] ?>"><?= elem[0].slice(5, 10) ?><br>残<?= elem[2] ?></a></td>
+    <? } ?>
+    <? startDay++ ?>
+    <? if(startDay % 7 == 0){startDay=0; ?>
+    </tr>
+    <tr>
+    <? } ?>
+  <? })) ?>
+  </tr>
+  </table>
+
+
+  <? } ?>
+  <hr>
+  <form action="<?= url ?>" method="post">
+  <label>管理用
+  <input type="password" name="user" value="">
+  </label>
+  <input type="submit" value="送信" name="admin">
+  </form>
+  </div>
+
+    <?!= include('js'); ?>
+  </body>
+</html>

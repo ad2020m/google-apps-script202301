@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <title><?= title ?></title>
+    <?!= include('css'); ?>
+  </head>
+  <body>
+  <div class="container">
+  <h1>入力結果</h1>
+  <? if(err){ ?>
+
+    <p><?!= err ?></p>
+    <p>メールが届かない場合はキャリアの迷惑メール設定にて<br>
+    以下のアドレスからのメールを受信可能に設定してください。<br>
+    〇〇@gmail.com</p>
+
+  <? }else{ ?>
+
+  <table class="table">
+  <? data.forEach( elem => { ?>
+  <tr>
+    <td><?= elem[0] ?></td><td><?= elem[1] ?></td><td><?= elem[2] ?></td><td><?= elem[3] ?></td><td><?= elem[4] ?></td>
+  </tr>
+  <? }) ?>
+  </table>
+
+  <? } ?>
+  <p><a href="<?= url ?>">トップへ戻る</a></p>
+  </div>
+
+    <?!= include('js'); ?>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <title><?= title ?></title>
+    <?!= include('css'); ?>
+  </head>
+  <body>
+  <div class="container">
+    <h1><?= title ?></h1>
+  <h2><?= yoyaku ?>(<?= youbi ?>)</h2>
+
+  <form action="<?= url ?>" method="post">
+  <input type="hidden" name="yoyaku" value="<?= yoyaku ?>">
+
+    <? if(zan){ ?>
+
+    <p>現在設定　残席：<?= zan ?></p>
+
+  <select name="zan">
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+    <option value="0">0</option>
+    <option value="x">x</option>
+  </select>
+
+  <p>数値を変更しデータ送信ボタン、変更しない場合は戻るボタンで戻ってください</p>
+
+  <? }else if(user){ ?>
+
+    <p><?= user ?>　（メールアドレス先頭6文字）</p>
+    <input type="hidden" name="user" value="<?= user ?>">
+  <p>予約削除してもよろしいですか？<br>削除する場合はデータ送信ボタン、変更しない場合は戻るボタンで戻ってください</p>
+
+  <? } ?>
+
+  <p><input type="submit" name="edit" value="データ送信"></p>
+  </form>
+  <hr>
+  <form action="<?= url ?>" method="post">
+  <input type="submit" name="admin" value="戻る">
+  <input type="hidden" name="modoru" value="modoru">
+  </form>
+  </div>
+
+    <?!= include('js'); ?>
+  </body>
+</html>
